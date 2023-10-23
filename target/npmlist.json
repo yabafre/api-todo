@@ -1,0 +1,1 @@
+{"version":"1.0.0","name":"api-todo","dependencies":{"@trycourier/courier":{"version":"4.1.0"},"bcrypt":{"version":"5.1.0"},"body-parser":{"version":"1.20.1"},"compression":{"version":"1.7.4"},"crypto":{"version":"1.0.1"},"dotenv":{"version":"16.0.3"},"express":{"version":"4.18.2"},"jsonwebtoken":{"version":"8.5.1"},"mongoose":{"version":"6.8.0"},"nodemon":{"version":"2.0.20"}}}
