@@ -34,4 +34,4 @@ io.init({
 app.use('/auth', authRouter)
 app.use('/', userRouter)
 
-app.listen(port, () => console.log(`Serveur Express lancé sur le port ${port}`))
+app.listen(port, '0.0.0.0',() => console.log(`Serveur Express lancé sur le port ${port}`))
