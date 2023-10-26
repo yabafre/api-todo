@@ -43,7 +43,7 @@ module.exports = {
             let code = 500
             let message = 'Erreur de connexion, veuillez réessayer.'
             if(error.message === 'session'){
-                code = 400
+                code = 401
                 message = 'Mail incorrect'
             }
             if(error.message === 'connect'){
@@ -68,10 +68,10 @@ module.exports = {
                 throw new Error('bdd')
             }
             // user à partir du token de session, lister ses taches
-            const listTask = await Task.find({'id': foundSign._id}).populate('body').sort('-createdAt').select({'__v' : 0});
+            const listTask = await Task.find({'user_id': foundSign._id}).populate('body').sort('-createdAt').select({'__v' : 0});
             console.log('listTask',listTask);
             const foundList =
-                res.json({
+                res.status(200).json({
                     message: `Bienvenue ${foundSign.name}, Vos taches : `,listTask
                 });
         } catch (error) {
@@ -117,8 +117,9 @@ module.exports = {
             const newTask = new Task(data);
             await newTask.save();
             console.log('newTask',newTask);
-            return res.status(200).json({
+            return res.status(201).json({
                 message: `Votre tache a bien été créé : ${foundSign.name}`,
+                task : newTask
             } );
 
         } catch (error) {
@@ -203,7 +204,7 @@ module.exports = {
         try{
 
             const foundSign= await User.findOne({'_id': payload.user.id});
-            console.log('User Info : ',foundSign);
+            console.log('User Info delete : ',foundSign);
             if(!foundSign){
                 throw new Error('bdd')
             }

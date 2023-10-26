@@ -7,6 +7,20 @@ const Mailing = require('../services/Mail');
 
 
 module.exports = {
+    async reset(req, res){
+        const {mail} = req.params
+        try {
+            const remove = await User.findOneAndDelete({'mail': mail})
+            return res.send(201)
+        } catch (error) {
+            console.error('erreur dans le post/reset/: ', error.message)
+            let code = 500
+            let message = 'Erreur est survenue, veuillez réessayer.'
+            return res.status(code).json({
+                message,
+            })
+        }
+    },
     //recuperation des champs du nouvel utilisateur
     userAuth(req, res, next){
         const {name, mail} = req.body

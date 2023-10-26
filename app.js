@@ -14,6 +14,8 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_NAME}?retryWrites
 
 { useNewUrlParser: true, useUnifiedTopology: true })
 
+mongoose.set('bufferTimeoutMS', 30000);
+
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "ERROR: CANNOT CONNECT TO MONGO-DB"))
 db.on("open", () => console.log("CONNECTED TO MONGO-DB"))
