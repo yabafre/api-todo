@@ -14,6 +14,7 @@ mongoose.connect(`mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_NAME}?retryWrites
 
 { useNewUrlParser: true, useUnifiedTopology: true })
 
+mongoose.set('strictQuery', true);
 mongoose.set('bufferTimeoutMS', 30000);
 
 const db = mongoose.connection
