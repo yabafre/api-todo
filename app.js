@@ -7,6 +7,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const {DB_USER, DB_PASSWORD, DB_NAME} = process.env
+const io = require('@pm2/io')
 
 app.use(compression())
 app.use(cors())
@@ -24,6 +25,10 @@ const authRouter = require ('./routers/authRouter').router
 const userRouter = require ('./routers/userRouter').router
 
 app.use(bodyParser.json())
+io.init({
+    transactions: true,
+    http: true,
+});
 
 app.use('/auth', authRouter)
 app.use('/', userRouter)
