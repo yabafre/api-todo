@@ -9,9 +9,9 @@ connect()
     .then(() => start('ecosystem.config.js'))
     .then(() => list())
     .then(processes => {
-        const yuniqApi = processes.find(p => p.name === 'todo-api');
+        const todoApi = processes.find(p => p.name === 'todo-api');
 
-        if (!yuniqApi) {
+        if (!todoApi) {
             throw new Error('todo-api not found in PM2 processes');
         }
 

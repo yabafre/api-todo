@@ -180,7 +180,7 @@ module.exports = {
             let message = 'Veuillez réessayer.'
             if(error.message === 'bdd'){
                 code = 409
-                message = 'Erreur de connexion.'
+                message = 'Tache non trouvé.'
             }
             if(error.message === 'mode'){
                 code = 409
@@ -223,7 +223,7 @@ module.exports = {
             let message = 'Veuillez réessayer.'
             if(error.message === 'bdd'){
                 code = 409
-                message = 'Erreur de connexion.'
+                message = 'Tache non trouvé.'
             }
             if(error.message === 'mode'){
                 code = 409

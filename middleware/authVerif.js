@@ -16,7 +16,7 @@ module.exports = {
         const tokenCheck = new Function;
         const decodeToken = tokenCheck.verifyJWT(token, ACCESS_TOKEN);
         if (!decodeToken) {
-            return res.status(401).json({ message: "Vous n'êtes pas connecté" })
+            return res.status(401).json({ message: "Token non identifié" })
         }
         console.log(decodeToken)
         req.decodeToken = decodeToken;

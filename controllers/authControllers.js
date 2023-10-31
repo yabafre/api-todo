@@ -11,11 +11,18 @@ module.exports = {
         const {mail} = req.params
         try {
             const remove = await User.findOneAndDelete({'mail': mail})
-            return res.send(201)
+            if (!remove){
+                throw new Error('not found')
+            }
+            return res.send(200)
         } catch (error) {
             console.error('erreur dans le post/reset/: ', error.message)
             let code = 500
             let message = 'Erreur est survenue, veuillez réessayer.'
+            if(error.message === 'not found'){
+                code = 404
+                message = 'Utilisateur non trouvé'
+            }
             return res.status(code).json({
                 message,
             })
