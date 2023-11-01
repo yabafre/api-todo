@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 const port = process.env.PORT || 3000
+const host = process.env.HOST || 'localhost'
 const compression = require('compression')
 const app = express()
 const cors = require('cors')
@@ -34,4 +35,4 @@ io.init({
 app.use('/auth', authRouter)
 app.use('/', userRouter)
 
-app.listen(port, '0.0.0.0',() => console.log(`Serveur Express lancé sur le port ${port}`))
+app.listen(port,host,() => console.log(`Serveur Express lancé sur le port ${port}`))

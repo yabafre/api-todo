@@ -15,9 +15,9 @@ describe('Task Routes', () => {
             // Supprimez l'utilisateur de test avant de commencer les tests.
             const mail = "testing1@gmail.com"
             const response = await axios.post(`http://localhost:${port}/auth/reset/${mail}`);
-            expect(response.status).toBe(201);
+            expect(response.status).toBe(200);
         } catch (error) {
-            console.error("Erreur lors de la suppression de l'utilisateur de test:", error.response.status);
+            expect(error.response.status).toBe(404);
         }
     });
     it('should create a new user and return a token', async () => {

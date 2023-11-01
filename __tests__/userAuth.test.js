@@ -15,9 +15,9 @@ describe('Auth Routes', () => {
             // Supprimez l'utilisateur de test avant de commencer les tests.
             const mail = "testing1@gmail.com"
             const response = await axios.post(`http://localhost:${port}/auth/reset/${mail}`);
-            expect(response.status).toBe(201);
+            expect(response.status).toBe(200);
         } catch (error) {
-            console.error("Erreur lors de la suppression de l'utilisateur de test:", error.response.status);
+            expect(error.response.status).toBe(404);
         }
     });
 
@@ -43,7 +43,7 @@ describe('Auth Routes', () => {
             const response = await axios.get(`http://localhost:${port}/auth/signup/confirm?token=${token}`);
             expect(response.status).toBe(201);
         } catch (error) {
-            console.error(error.status);
+            console.error(error.response.status);
         }
     });
 
@@ -152,7 +152,7 @@ describe('Auth Routes', () => {
             // Supprimez l'utilisateur de test avant de commencer les tests.
             const mail = "testing1@gmail.com"
             const response = await axios.post(`http://localhost:${port}/auth/reset/${mail}`);
-            expect(response.status).toBe(201);
+            expect(response.status).toBe(200);
         } catch (error) {
             console.error("Erreur lors de la suppression de l'utilisateur de test:", error);
         }
